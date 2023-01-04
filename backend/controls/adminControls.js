@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const db = require("../config/db");
 const collection = require("../config/collection");
-const generateToken = require("../utils/jwtToken");
+const generateToken = require("../utils/JwtToken");
 const { ObjectId } = require("mongodb");
 const { GALLERY_COLLECTION } = require("../config/collection");
 const {DOCTORS_COLLECTION} =require('../config/collection')
