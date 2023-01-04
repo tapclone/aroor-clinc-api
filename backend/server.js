@@ -8,7 +8,7 @@ const cors = require("cors");
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors("*"));
+app.use(cors());
 
 app.use(session({ secret: "key", cookie: { maxAge: 6000000 } }));
 app.use("/api/admin", adminRoutes);

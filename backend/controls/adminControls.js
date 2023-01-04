@@ -46,12 +46,13 @@ const DeleteBlog = asyncHandler(async (req, res) => {
   }
 });
 const viewAllBlog = asyncHandler(async (req, res) => {
+  console.log("dkjckj");
   const viewAllBlog = await db
     .get()
     .collection(collection.BLOG_COLLECTION)
     .find()
     .toArray();
-  
+   
   if (viewAllBlog) {
     res.status(200).send(viewAllBlog);
   } else {
