@@ -44,7 +44,7 @@ const PORT = process.env.PORT || 8000;
 connect((err) => {
   if (err) {
     console.log("connection error" + err);
-  } else { 
+  } else {
     console.log("database connected");
   }
 });
@@ -119,7 +119,7 @@ const viewAllBlog = asyncHandler(async (req, res) => {
 const AddGallery = asyncHandler((req, res) => {
   const obj = req.body;
 
-  const add = get().collection(GALLERY_COLLECTION).insertOne(obj);
+  const add = get().collection(collection.GALLERY_COLLECTION).insertOne(obj);
   if (add) {
     res.status(200).json("Success");
   } else {
@@ -128,7 +128,7 @@ const AddGallery = asyncHandler((req, res) => {
 });
 const viewAllGallery = asyncHandler(async (req, res) => {
   const AllGallery = await get()
-    .collection(GALLERY_COLLECTION)
+    .collection(collection.GALLERY_COLLECTION)
     .find()
     .toArray();
   if (AllGallery) {
@@ -140,7 +140,7 @@ const viewAllGallery = asyncHandler(async (req, res) => {
 const DeleteGallery = asyncHandler(async (req, res) => {
   const id = req.params.id;
   const deleteGallery = await get()
-    .collection(GALLERY_COLLECTION)
+    .collection(collection.GALLERY_COLLECTION)
     .deleteOne({ _id: ObjectId(id) });
   if (deleteGallery) {
     res.status(200).json(deleteGallery);
@@ -152,7 +152,7 @@ const DeleteGallery = asyncHandler(async (req, res) => {
 const AddDoctors = asyncHandler((req, res) => {
   const obj = req.body;
 
-  const add = get().collection(DOCTORS_COLLECTION).insertOne(obj);
+  const add = get().collection(collection.DOCTORS_COLLECTION).insertOne(obj);
   if (add) {
     res.status(200).json("Success");
   } else {
@@ -161,7 +161,7 @@ const AddDoctors = asyncHandler((req, res) => {
 });
 const ViewAllDoctors = asyncHandler(async (req, res) => {
   const AllDoctors = await get()
-    .collection(DOCTORS_COLLECTION)
+    .collection(collection.DOCTORS_COLLECTION)
     .find()
     .toArray();
   if (AllDoctors) {
@@ -179,7 +179,7 @@ const DeleteDoctors = asyncHandler(async (req, res) => {
     res.status(200).json(deleteDoctors);
   } else {
     res.status(500).json("Something Went Wrong ");
-  }
+  } 
 });
 
 router.route("/login").post(Login);
