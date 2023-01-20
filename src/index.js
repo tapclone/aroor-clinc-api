@@ -139,12 +139,15 @@ const viewAllGallery = asyncHandler(async (req, res) => {
 });
 const DeleteGallery = asyncHandler(async (req, res) => {
   const id = req.params.id;
+  console.log(id);
   const deleteGallery = await get()
     .collection(collection.GALLERY_COLLECTION)
     .deleteOne({ _id: ObjectId(id) });
   if (deleteGallery) {
+    console.log("dmck");
     res.status(200).json(deleteGallery);
   } else {
+    console.log("dmcks");
     res.status(500).json("Something Went Wrong ");
   }
 });
@@ -179,17 +182,17 @@ const DeleteDoctors = asyncHandler(async (req, res) => {
     res.status(200).json(deleteDoctors);
   } else {
     res.status(500).json("Something Went Wrong ");
-  } 
+  }
 });
 
 router.route("/login").post(Login);
-router.route("/addBlog").post(verifyToken, AddBlog);
-router.route("/deleteBlog/:id").delete(verifyToken, DeleteBlog);
+router.route("/addBlog").post(AddBlog);
+router.route("/deleteBlog/:id").delete(DeleteBlog);
 router.route("/viewAllBlog").get(viewAllBlog);
-router.route("/addGallery").post(verifyToken, AddGallery);
+router.route("/addGallery").post(AddGallery);
 router.route("/viewAllGallery").get(viewAllGallery);
-router.route("/deleteGallery/:id").delete(verifyToken, DeleteGallery);
-router.route("/addDoctors").post(verifyToken, AddDoctors);
-router.route("/deleteDoctors/:id").delete(verifyToken, DeleteDoctors);
+router.route("/deleteGallery/:id").delete(DeleteGallery);
+router.route("/addDoctors").post(AddDoctors);
+router.route("/deleteDoctors/:id").delete(DeleteDoctors);
 router.route("/viewAllDoctors").get(ViewAllDoctors);
 app.listen(PORT, console.log(`server started on PORT ${PORT}`));
